@@ -1,0 +1,18 @@
+start: elem ("," elem)* ","?
+
+elem: object | arg_pair
+
+object: PLOT_TYPE "(" elem ("," elem)* ","? ")"
+arg_pair: STR ":" arg_val
+
+arg_val: string | NUMBER | STR
+
+string: /"(?:[^"\\]|\\.)*"/
+
+PLOT_TYPE: "Line" | "Scatter"
+
+STR : ("A".."Z" | "a".."z")("A".."Z" | "a".."z" | "0".."9")*
+
+NUMBER: ("0".."9")+
+WHITESPACE: (" " | "\n")+
+%ignore WHITESPACE
